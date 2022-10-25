@@ -1,5 +1,11 @@
-program:
-	g++ main.cpp Heap.hpp
+program: main.o Parallelepiped.o
+	g++ -o run main.o Heap.hpp Parallelepiped.o 
+
+main.o:
+	g++ -c main.cpp 
+
+Parallelepiped.o:
+	g++ -c Parallelepiped.cpp
 
 clean:
-	rm a.out Heap.hpp.gch
+	rm *.o run

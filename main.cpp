@@ -7,18 +7,24 @@
 
 #include <iostream>
 #include "Heap.hpp"
+#include "Parallelepiped.hpp"
 
 using namespace std;
 
 int main() {
-    Heap<int> heap(5);
-    heap.Insert(3);
-    heap.Insert(7);
-    heap.Insert(1);
-    heap.Insert(4);
-    heap.Insert(2);
-    heap.Insert(9);
+    // Heap<int> heap(5);
+    // heap.Insert(3);
+    // heap.Insert(7);
+    // heap.Insert(1);
+    // heap.Insert(4);
+    // heap.Insert(2);
+    // heap.Insert(9);
 
-    heap.Print();
+    // heap.Print();
+
+    Parallelepiped A, B;
+    Parallelepiped C(2., 4.5, 3.);
+    cin >> A >> B;
+    cout << A << B << C;
     return 0;
 }
