@@ -4,7 +4,7 @@
 #include <algorithm>
 
 template<typename T>
-class PriorityQueue : public std::vector<T> {
+class PriorityQueue : std::vector<T> {
 private:
     void siftup(size_t start) {
         while (this->at(start) > this->at(start / 2)) {
@@ -36,6 +36,7 @@ private:
         }
     }
 public:
+    using vector<T>::size;
     void push(const T&);
     T pop();
 };
