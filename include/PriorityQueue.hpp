@@ -7,7 +7,7 @@ class PriorityQueue {
 private:
     T* value;
     double* priority;
-    int count;
+    size_t count = 0;
 public:
     PriorityQueue(): count(0) {}
     PriorityQueue(const PriorityQueue&);
@@ -49,7 +49,7 @@ void PriorityQueue<T>::push(T item, int pri) {
     double* priority_temp = new double[count + 1];
 
     int pos = 0;
-    if(count != 0) {
+    if(count > 0) {
         while(pos < count) {
             if(priority[pos] >= pri) pos++;
         }
@@ -68,7 +68,7 @@ void PriorityQueue<T>::push(T item, int pri) {
         priority_temp[i] = priority[i - 1];
     }
 
-    if(count != 0) {
+    if(count > 0) {
         delete[] value;
         delete[] priority;
     }
@@ -92,7 +92,7 @@ T PriorityQueue<T>::pop() {
         priority_temp[i] = priority[i];
     }
 
-    if(count != 0) {
+    if(count > 0) {
         delete[] value;
         delete[] priority;
     }
