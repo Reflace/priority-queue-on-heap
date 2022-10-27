@@ -20,7 +20,7 @@ public:
     void clear();
 
     PriorityQueue operator=(const PriorityQueue&);
-    friend ostream& operator<<(ostream& stream, PriorityQueue pq);
+    // friend std::ostream& operator<<(std::ostream& stream, const PriorityQueue&);
 };
 
 template<typename T>
@@ -112,3 +112,28 @@ void PriorityQueue<T>::clear() {
         count = 0;
     }
 }
+
+template<typename T>
+PriorityQueue<T> PriorityQueue<T>::operator=(const PriorityQueue& pq) {
+    if(count > 0) {
+        delete[] value;
+        delete[] priority;
+        count = 0;
+    }
+
+    value = new T[pq.count];
+    priority = new double[pq.count];
+    count = pq.count;
+
+    for(int i = 0; i < count; i++) {
+        value[i] = pq.value[i];
+        priority[i] = pq.priority[i];
+    }
+
+    return *this;
+}
+
+// template<typename T>
+// std::ostream& PriorityQueue<T>::operator<<(std::ostream& stream, const PriorityQueue<T>& pq) {
+    
+// }
