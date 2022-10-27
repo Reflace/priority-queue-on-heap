@@ -6,29 +6,23 @@
 // в которой элементами являются объекты класса (созданного в практическом занятии «Обобщенный алгоритм сортировки Шелла».).
 
 #include <iostream>
-#include "Heap.hpp"
 #include "Parallelepiped.hpp"
-#include "PriorityQueue1.hpp"
-#include <vector>
+#include "PriorityQueue.hpp"
 
 using namespace std;
 
 int main() {
-//  Heap<int> heap(5);
-//  heap.Insert(3);
-//  heap.Insert(7);
-//  heap.Insert(1);
-//  heap.Insert(4);
-//  heap.Insert(2);
-//  heap.Insert(9);
-//
-//  heap.Print();
-
-//    vector<int> v;
-//    v.push_back(1);
     PriorityQueue<int> pq;
-    pq.push_back(1);
+    cout << "Size: " <<pq.size() << std::endl;
+    pq.push(3);
+    pq.push(2);
+    pq.push(1);
+    pq.push(0);
+    cout << "Size: " <<pq.size() << std::endl;
     cout << pq.pop() << endl;
-
+    cout << pq.pop() << endl;
+    cout << pq.pop() << endl;
+    cout << pq.pop() << endl;
+    cout << "Size: " <<pq.size() << std::endl;
     return 0;
 }

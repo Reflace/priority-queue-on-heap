@@ -7,13 +7,33 @@
 template<typename T>
 class PriorityQueue : public std::vector<T> {
 private:
-    void sive_up(size_t start) {
-        while (this[start] > this[start / 2]) {
-            //std::swap(this[start], this[start / 2]);
-            T tmp = this->at(start);
-            this->at(start) = this->at(start / 2);
-            this->at(start / 2) = tmp;
+    void siftup(size_t start) {
+        while (this->at(start) < this->at(start / 2)) {
+            std::swap(this->at(start), this->at(start / 2));
             start /= 2;
+        }
+    }
+    void siftdown(size_t start) {
+        size_t n = this->size();
+        bool lleaf_is_lower = (n > (start * 2 + 1) && this->at(start) > this->at(start * 2 + 1));
+        bool rleaf_is_lower = (n > (start * 2 + 2) && this->at(start) > this->at(start * 2 + 2));
+        while (lleaf_is_lower || rleaf_is_lower) {
+            size_t l = start * 2 + 1;
+            size_t r = start * 2 + 2;
+            if (rleaf_is_lower) {
+                if (this->at(l) <= this->at(r)) {
+                    std::swap(this->at(start), this->at(l));
+                    start = l;
+                } else {
+                    std::swap(this->at(start), this->at(r));
+                    start = r;
+                }
+            } else {
+                std::swap(this->at(start), this->at(l));
+                start = l;
+            }
+            lleaf_is_lower = (n > (start * 2 + 1) && this->at(start) > this->at(start * 2 + 1));
+            rleaf_is_lower = (n > (start * 2 + 2) && this->at(start) > this->at(start * 2 + 2));
         }
     }
 public:
@@ -23,9 +43,8 @@ public:
 
 template<typename T>
 void PriorityQueue<T>::push(const T& item) {
-    std::cout << this->size() << std::endl;
     this->push_back(item);
-    this->sive_up(this->size() - 1);
+    this->siftup(this->size() - 1);
 }
 
 template<typename T>
@@ -33,6 +52,6 @@ T PriorityQueue<T>::pop() {
     T tmp = this->front();
     std::swap(this->front(), this->back());
     this->pop_back();
-    this->sive_up(this->size() - 1);
+    this->siftdown(0);
     return tmp;
 }
