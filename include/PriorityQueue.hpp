@@ -1,13 +1,79 @@
 #pragma once
 
-#include <utility>
+#include <iostream>
 
 template<typename T>
 class PriorityQueue {
 private:
-    std::pair<double, T>* queue;
+    T* value;
+    double* priority;
     int count;
-    int size;
 public:
-    
+    PriorityQueue(): count(0) {}
+    PriorityQueue(const PriorityQueue&);
+    ~PriorityQueue();
+
+    inline int size() { return count; }
+
+    void push(T, int);
+    T pop();
+    void clear();
+
+    PriorityQueue operator=(const PriorityQueue&);
+    friend ostream& operator<<(ostream& stream, PriorityQueue pq);
 };
+
+template<typename T>
+PriorityQueue<T>::PriorityQueue(const PriorityQueue<T>& pq) {
+    value = new T[pq.count];
+    priority = new double[pq.count];
+    count = pq.count;
+
+    for(int i = 0; i < count; i++) {
+        value[i] = pq.value[i];
+        priority[i] = pq.priority[i];
+    }
+}
+
+template<typename T>
+PriorityQueue<T>::~PriorityQueue() {
+    if(count > 0) {
+        delete[] value;
+        delete[] priority;
+    }
+}
+
+template<typename T>
+void PriorityQueue<T>::push(T item, int pri) {
+    T* value_temp = new T[count + 1];
+    double* priority_temp = new double[count + 1];
+
+    int pos = 0;
+    if(count != 0) {
+        while(pos < count) {
+            if(priority[pos] >= pri) pos++;
+        }
+    }
+
+    for(int i = 0; i < pos; i++) {
+        value_temp[i] = value[i];
+        priority_temp[i] = priority[i];
+    }
+
+    value_temp[pos] = item;
+    priority_temp[pos] = pri;
+
+    for(int i = pos + 1; i < count + 1; i++) {
+        value_temp[i] = value[i - 1];
+        priority_temp[i] = priority[i - 1];
+    }
+
+    if(count != 0) {
+        delete[] value;
+        delete[] priority;
+    }
+
+    value = value_temp;
+    priority = priority_temp;
+    count++;
+}
