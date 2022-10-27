@@ -18,7 +18,8 @@ template<typename RandomAccessIterator, typename BinaryPredicate>
 void push_heap(RandomAccessIterator beg, RandomAccessIterator end, BinaryPredicate op);
 
 // Алгоритм pop_heap
-// Если диапазон [beg, end) представляет собой пирамиду, pop_heap() обменивает значение в позиции beg со значением в позиции end-1 
+// Если диапазон [beg, end) представляет собой пирамиду, pop_heap() обменивает 
+// значение в позиции beg со значением в позиции end-1 
 // и выполняет перестановку элементов в диапазоне [beg, end-1), превращая его в пирамиду.
 template<typename RandomAccessIterator>
 void pop_heap(RandomAccessIterator beg, RandomAccessIterator end);
@@ -29,7 +30,8 @@ void pop_heap(RandomAccessIterator beg, RandomAccessIterator end, BinaryPredicat
 // Алгоритм sort_heap
 // Обе формы алгоритма преобразовывают пирамиду [beg,end) в упорядоченную последовательность.
 // После выполнения алгоритма диапазон [beg,end) перестает быть пирамидой.
-// Для корректной работы алгоритма элементы диапазона [beg, end) должны образовывать пирамиду (в соответствии с тем же критерием сортировки).
+// Для корректной работы алгоритма элементы диапазона [beg, end) должны образовывать 
+// пирамиду (в соответствии с тем же критерием сортировки).
 template< typename RandomAccessIterator>
 void sort_heap(RandomAccessIterator beg, RandomAccessIterator end);
 
