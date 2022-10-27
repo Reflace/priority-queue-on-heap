@@ -1,4 +1,6 @@
+build/
+googletest/
+cmake-build-debug/
+.idea/
 *.o
 run
-build
-googletest
