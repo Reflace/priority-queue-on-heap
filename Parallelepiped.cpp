@@ -16,11 +16,11 @@ bool operator!=(Parallelepiped p1, Parallelepiped p2) {
 }
 
 bool operator>(Parallelepiped p1, Parallelepiped p2) {
-    return p1.getVolume() > p2.getVolume(); 
+    return p1.getVolume() > p2.getVolume();
 }
 
 bool operator<(Parallelepiped p1, Parallelepiped p2) {
-    return p1.getVolume() < p2.getVolume(); 
+    return p1.getVolume() < p2.getVolume();
 }
 
 ostream& operator<<(ostream& stream, const Parallelepiped& obj) {
