@@ -77,3 +77,38 @@ void PriorityQueue<T>::push(T item, int pri) {
     priority = priority_temp;
     count++;
 }
+
+template<typename T>
+T PriorityQueue<T>::pop() {
+    if(count == 0) return 0;
+
+    T* value_temp = new T[count - 1];
+    double* priority_temp = new double[count - 1];
+
+    T item = value[0];
+
+    for(int i = 0; i < count - 1; i++) {
+        value_temp[i] = value[i];
+        priority_temp[i] = priority[i];
+    }
+
+    if(count != 0) {
+        delete[] value;
+        delete[] priority;
+    }
+
+    value = value_temp;
+    priority = priority_temp;
+    count--;
+
+    return item;
+}
+
+template<typename T>
+void PriorityQueue<T>::clear() {
+    if(count > 0) {
+        delete[] value;
+        delete[] priority;
+        count = 0;
+    }
+}
