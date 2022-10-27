@@ -20,7 +20,7 @@ private:
             size_t l = start * 2 + 1;
             size_t r = start * 2 + 2;
             if (rleaf_is_bigger) {
-                if (this->at(l) >= this->at(r)) {
+                if (this->at(l) > this->at(r)) {
                     std::swap(this->at(start), this->at(l));
                     start = l;
                 } else {
