@@ -22,16 +22,16 @@ using namespace std;
 
 int main() {
     PriorityQueue<int> pq;
-    cout << "Size: " <<pq.size() << std::endl;
+    cout << "Size: " << pq.size() << std::endl;
     pq.push(3);
     pq.push(2);
     pq.push(1);
     pq.push(0);
-    cout << "Size: " <<pq.size() << std::endl;
+    cout << "Size: " << pq.size() << std::endl;
     cout << pq.pop() << endl;
     cout << pq.pop() << endl;
     cout << pq.pop() << endl;
     cout << pq.pop() << endl;
-    cout << "Size: " <<pq.size() << std::endl;
+    cout << "Size: " << pq.size() << std::endl;
     return 0;
 }

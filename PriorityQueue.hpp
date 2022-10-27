@@ -7,20 +7,20 @@ template<typename T>
 class PriorityQueue : public std::vector<T> {
 private:
     void siftup(size_t start) {
-        while (this->at(start) < this->at(start / 2)) {
+        while (this->at(start) > this->at(start / 2)) {
             std::swap(this->at(start), this->at(start / 2));
             start /= 2;
         }
     }
     void siftdown(size_t start) {
         size_t n = this->size();
-        bool lleaf_is_lower = (n > (start * 2 + 1) && this->at(start) > this->at(start * 2 + 1));
-        bool rleaf_is_lower = (n > (start * 2 + 2) && this->at(start) > this->at(start * 2 + 2));
-        while (lleaf_is_lower || rleaf_is_lower) {
+        bool lleaf_is_bigger = ((start * 2 + 1) < n && this->at(start) < this->at(start * 2 + 1));
+        bool rleaf_is_bigger = ((start * 2 + 2) < n && this->at(start) < this->at(start * 2 + 2));
+        while (lleaf_is_bigger || rleaf_is_bigger) {
             size_t l = start * 2 + 1;
             size_t r = start * 2 + 2;
-            if (rleaf_is_lower) {
-                if (this->at(l) <= this->at(r)) {
+            if (rleaf_is_bigger) {
+                if (this->at(l) >= this->at(r)) {
                     std::swap(this->at(start), this->at(l));
                     start = l;
                 } else {
@@ -31,8 +31,8 @@ private:
                 std::swap(this->at(start), this->at(l));
                 start = l;
             }
-            lleaf_is_lower = (n > (start * 2 + 1) && this->at(start) > this->at(start * 2 + 1));
-            rleaf_is_lower = (n > (start * 2 + 2) && this->at(start) > this->at(start * 2 + 2));
+            lleaf_is_bigger = ((start * 2 + 1) < n && this->at(start) < this->at(start * 2 + 1));
+            rleaf_is_bigger = ((start * 2 + 2) < n && this->at(start) < this->at(start * 2 + 2));
         }
     }
 public:
